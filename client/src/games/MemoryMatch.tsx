@@ -12,7 +12,7 @@ interface MemoryCard {
 }
 
 interface MemoryMatchProps {
-  setScore: (score: number) => void;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const MemoryMatch: React.FC<MemoryMatchProps> = ({ setScore }) => {
@@ -136,7 +136,7 @@ const MemoryMatch: React.FC<MemoryMatchProps> = ({ setScore }) => {
           const difficultyBonus = difficulty * 10;
           const newPairPoints = basePoints - movePenalty + difficultyBonus;
           
-          setScore(prevScore => prevScore + newPairPoints);
+          setScore(prev => prev + newPairPoints);
           
           setFlippedCards([]);
           setIsChecking(false);
@@ -166,7 +166,7 @@ const MemoryMatch: React.FC<MemoryMatchProps> = ({ setScore }) => {
       setTimeout(() => {
         // Level complete bonus
         const levelCompleteBonus = level * difficulty * 50;
-        setScore(prevScore => prevScore + levelCompleteBonus);
+        setScore(prev => prev + levelCompleteBonus);
         
         // Move to next level
         setLevel(prevLevel => prevLevel + 1);
